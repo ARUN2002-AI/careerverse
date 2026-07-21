@@ -1,0 +1,106 @@
+{
+  "_comment": "Primitive design values. Consumed by BOTH src/theme/tokens.ts (TypeScript/StyleSheet) and tailwind.config.js (NativeWind utility classes). Editing here updates both. See docs/DESIGN_SYSTEM.md.",
+
+  "palette": {
+    "brass400": "#E8BC6B",
+    "brass500": "#D9A441",
+    "brass600": "#B8862F",
+    "brassDark": "#9A6E1C",
+    "brassDarker": "#7E5A14",
+    "brassMuted": "#3A2F1A",
+    "brassMutedLight": "#F5EAD2",
+
+    "cyan500": "#4FD1E0",
+    "cyanDark": "#1A7D89",
+    "cyanMuted": "#16323A",
+    "cyanMutedLight": "#DFF3F6",
+
+    "ink": "#080C16",
+    "navy1": "#0E1424",
+    "navy2": "#161E32",
+    "navy3": "#202A44",
+    "navyBorder": "#243049",
+
+    "white": "#FFFFFF",
+    "paper": "#F7F8FB",
+    "paper2": "#F0F2F7",
+    "paper3": "#E6EAF2",
+    "paperBorder": "#DFE4ED",
+
+    "textDark": "#F2F5FA",
+    "textDarkMuted": "#A7B3C7",
+    "textDarkFaint": "#79879D",
+
+    "textLight": "#0C1220",
+    "textLightMuted": "#4A566B",
+    "textLightFaint": "#677389",
+
+    "success": "#3DD68C",
+    "successDark": "#0F9D58",
+    "warning": "#FF8A3D",
+    "warningDark": "#C25C0A",
+    "danger": "#FF5C6C",
+    "dangerDark": "#C8353F"
+  },
+
+  "spacing": {
+    "0": 0,
+    "1": 4,
+    "2": 8,
+    "3": 12,
+    "4": 16,
+    "5": 20,
+    "6": 24,
+    "8": 32,
+    "10": 40,
+    "12": 48,
+    "16": 64
+  },
+
+  "radius": {
+    "sm": 8,
+    "md": 12,
+    "lg": 16,
+    "xl": 24,
+    "full": 999
+  },
+
+  "fontSize": {
+    "display": 34,
+    "h1": 28,
+    "h2": 22,
+    "h3": 18,
+    "body": 16,
+    "sm": 14,
+    "xs": 12,
+    "mono": 13,
+    "label": 11
+  },
+
+  "lineHeight": {
+    "display": 40,
+    "h1": 34,
+    "h2": 28,
+    "h3": 24,
+    "body": 24,
+    "sm": 20,
+    "xs": 16,
+    "mono": 18,
+    "label": 14
+  },
+
+  "layout": {
+    "screenX": 20,
+    "screenXCompact": 16,
+    "maxContentWidth": 560,
+    "compactBreakpoint": 360,
+    "tabletBreakpoint": 600,
+    "minTouchTarget": 44
+  },
+
+  "motion": {
+    "fast": 140,
+    "base": 220,
+    "slow": 360
+  }
+}
