@@ -7,33 +7,28 @@ const p = t.palette;
 module.exports = {
   content: ['./App.tsx', './src/**/*.{js,jsx,ts,tsx}'],
   presets: [require('nativewind/preset')],
-  darkMode: 'class',
+  // The app is dark-only (Bible Part 21 defines one background set), so there is no
+  // `dark:` variant to toggle and no light-suffixed colours.
   theme: {
     extend: {
       colors: {
-        // Dark theme is the default. Light variants are suffixed `-light`.
-        bg: p.ink,
-        surface: { 1: p.navy1, 2: p.navy2, 3: p.navy3 },
-        line: p.navyBorder,
-        brand: {
-          DEFAULT: p.brass500,
-          hover: p.brass400,
-          pressed: p.brass600,
-          muted: p.brassMuted,
-          light: p.brassDark,
-        },
-        accent: { DEFAULT: p.cyan500, muted: p.cyanMuted, light: p.cyanDark },
+        bg: p.bg,
+        surface: p.surface,
+        card: p.card,
+        line: p.divider,
+        brand: { DEFAULT: p.primary500, on: p.textPrimary },
+        accent: p.secondary,
         content: {
-          primary: p.textDark,
-          secondary: p.textDarkMuted,
-          tertiary: p.textDarkFaint,
-          inverse: p.ink,
+          primary: p.textPrimary,
+          secondary: p.textSecondary,
+          caption: p.textCaption,
+          disabled: p.textDisabled,
         },
         state: {
           success: p.success,
           warning: p.warning,
-          danger: p.danger,
-          info: p.cyan500,
+          danger: p.error,
+          info: p.secondary,
         },
       },
       spacing: t.spacing,

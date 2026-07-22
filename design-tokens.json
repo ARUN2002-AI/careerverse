@@ -2,45 +2,32 @@
   "_comment": "Primitive design values. Consumed by BOTH src/theme/tokens.ts (TypeScript/StyleSheet) and tailwind.config.js (NativeWind utility classes). Editing here updates both. See docs/DESIGN_SYSTEM.md.",
 
   "palette": {
-    "brass400": "#E8BC6B",
-    "brass500": "#D9A441",
-    "brass600": "#B8862F",
-    "brassDark": "#9A6E1C",
-    "brassDarker": "#7E5A14",
-    "brassMuted": "#3A2F1A",
-    "brassMutedLight": "#F5EAD2",
+    "_comment": "Every value below is quoted verbatim from UI Experience Bible Part 21 (Color Palette). Do not add a hue that does not appear there. The 50-900 primary ramp is not yet documented, so no primary tints/shades exist yet.",
 
-    "cyan500": "#4FD1E0",
-    "cyanDark": "#1A7D89",
-    "cyanMuted": "#16323A",
-    "cyanMutedLight": "#DFF3F6",
+    "primary500": "#6C5CE7",
+    "gradientStart": "#7C3AED",
+    "gradientEnd": "#5B21B6",
 
-    "ink": "#080C16",
-    "navy1": "#0E1424",
-    "navy2": "#161E32",
-    "navy3": "#202A44",
-    "navyBorder": "#243049",
+    "secondary": "#00C2FF",
 
-    "white": "#FFFFFF",
-    "paper": "#F7F8FB",
-    "paper2": "#F0F2F7",
-    "paper3": "#E6EAF2",
-    "paperBorder": "#DFE4ED",
+    "success": "#22C55E",
+    "warning": "#F59E0B",
+    "error": "#EF4444",
 
-    "textDark": "#F2F5FA",
-    "textDarkMuted": "#A7B3C7",
-    "textDarkFaint": "#79879D",
+    "bg": "#0B1020",
+    "surface": "#151C2F",
+    "card": "#1F2937",
+    "divider": "#2B3447",
 
-    "textLight": "#0C1220",
-    "textLightMuted": "#4A566B",
-    "textLightFaint": "#677389",
+    "textPrimary": "#FFFFFF",
+    "textSecondary": "#B6C2D9",
+    "textDisabled": "#6B7280",
+    "textCaption": "#94A3B8"
+  },
 
-    "success": "#3DD68C",
-    "successDark": "#0F9D58",
-    "warning": "#FF8A3D",
-    "warningDark": "#C25C0A",
-    "danger": "#FF5C6C",
-    "dangerDark": "#C8353F"
+  "effects": {
+    "_comment": "Not part of the Part 21 palette. Shadow is an occlusion effect rather than a brand hue, so it lives outside `palette` to keep that object a verbatim copy of the spec.",
+    "shadow": "#000000"
   },
 
   "spacing": {

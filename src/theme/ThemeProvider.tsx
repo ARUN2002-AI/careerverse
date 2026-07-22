@@ -1,9 +1,8 @@
 import React, { createContext, useContext, useMemo } from 'react';
-import { useColorScheme, useWindowDimensions, AccessibilityInfo } from 'react-native';
+import { useWindowDimensions, AccessibilityInfo } from 'react-native';
 
 import {
-  darkColors,
-  lightColors,
+  colors,
   gradients,
   spacing,
   layout,
@@ -16,10 +15,7 @@ import {
   type Colors,
 } from './tokens';
 
-type Scheme = 'dark' | 'light';
-
 export interface Theme {
-  scheme: Scheme;
   colors: Colors;
   gradients: typeof gradients;
   spacing: typeof spacing;
@@ -42,15 +38,7 @@ export interface Theme {
 
 const ThemeContext = createContext<Theme | null>(null);
 
-export function ThemeProvider({
-  children,
-  forceScheme,
-}: {
-  children: React.ReactNode;
-  /** Overrides the OS setting. Used by the theme toggle in Settings. */
-  forceScheme?: Scheme;
-}) {
-  const osScheme = useColorScheme();
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const { width } = useWindowDimensions();
   const [reduceMotion, setReduceMotion] = React.useState(false);
 
@@ -67,14 +55,11 @@ export function ThemeProvider({
   }, []);
 
   const value = useMemo<Theme>(() => {
-    // Dark is the default. Light is opt-in, per DESIGN_SYSTEM.md §2.
-    const scheme: Scheme = forceScheme ?? (osScheme === 'light' ? 'light' : 'dark');
     const isCompact = width < layout.compactBreakpoint;
     const isTablet = width >= layout.tabletBreakpoint;
 
     return {
-      scheme,
-      colors: scheme === 'light' ? lightColors : darkColors,
+      colors,
       gradients,
       spacing,
       layout,
@@ -89,7 +74,7 @@ export function ThemeProvider({
       screenX: isCompact ? layout.screenXCompact : layout.screenX,
       reduceMotion,
     };
-  }, [forceScheme, osScheme, width, reduceMotion]);
+  }, [width, reduceMotion]);
 
   return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
 }

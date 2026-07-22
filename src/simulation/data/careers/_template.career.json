@@ -1,0 +1,192 @@
+{
+  "_comment": "THE CAREER TEMPLATE — the standard blueprint every career copies. This is DATA, not code. To add a career (Software Developer, UI/UX Designer, AI Engineer, Data Analyst, Product Manager, HR/Marketing/Sales Executive, Mechanical/Civil/Electronics Engineer, Healthcare, Finance, Education, or any future role), duplicate this file, fill in career-specific content, and register it in `careers/index.ts`. Do NOT change the engine, screens, or app architecture. Every field maps to the ten phases in PRODUCT_VISION.md. Omitted `joining`/`dailyWork` fall back to the shared DEFAULT flows in defaults.ts.",
+
+  "schemaVersion": "1.0",
+
+  "overview": {
+    "id": "template",
+    "title": "Career Blueprint",
+    "tagline": "The standard shape every CareerVerse career follows.",
+    "description": "A generic, fully-valid career used as the copy-me template and as a fixture that proves the engine loads any career purely from data. Replace every value with the real career's content.",
+    "category": "template",
+    "difficulty": "beginner",
+    "glyph": "◇"
+  },
+
+  "requiredSkills": [
+    { "id": "sk-core-1", "name": "Core Craft Skill", "category": "technical", "importance": "core" },
+    { "id": "sk-comm", "name": "Communication", "category": "communication", "importance": "important" },
+    { "id": "sk-problem", "name": "Problem Solving", "category": "problem_solving", "importance": "important" },
+    { "id": "sk-time", "name": "Time Management", "category": "time_management", "importance": "optional" }
+  ],
+
+  "roadmap": [
+    { "id": "rm-1", "title": "Foundations", "summary": "Learn the fundamentals and the tools of the role.", "durationLabel": "Weeks 1–4" },
+    { "id": "rm-2", "title": "Real Work", "summary": "Deliver real tasks with guidance and feedback.", "durationLabel": "Months 2–6" },
+    { "id": "rm-3", "title": "Ownership", "summary": "Own projects end to end and mentor others.", "durationLabel": "Year 1+" }
+  ],
+
+  "salary": [
+    { "region": "Global (indicative)", "currency": "USD", "period": "year", "junior": 30000, "mid": 60000, "senior": 110000 }
+  ],
+
+  "futureOpportunities": [
+    { "id": "fo-1", "title": "Specialisation", "description": "Go deep in a high-demand niche of the field." },
+    { "id": "fo-2", "title": "Leadership", "description": "Move into leading people and setting direction." }
+  ],
+
+  "learningPath": [
+    { "id": "lp-1", "title": "Fundamentals", "type": "course", "note": "Start with the core concepts." },
+    { "id": "lp-2", "title": "Guided Practice", "type": "practice" },
+    { "id": "lp-3", "title": "Portfolio Project", "type": "project" }
+  ],
+
+  "supportedCompanyTypes": ["startup", "medium", "enterprise"],
+
+  "_comment_flows": "joining and dailyWork are omitted here on purpose, so this career inherits the shared DEFAULT_JOINING_FLOW (Phase 3) and DEFAULT_DAILY_FLOW (Phase 4). A career only lists them when it needs a bespoke flow.",
+
+  "missions": [
+    {
+      "id": "m-tutorial",
+      "title": "Your First Task",
+      "brief": "A gentle, guided task that teaches how work is assigned, done, and reviewed here.",
+      "type": "tutorial",
+      "difficulty": "beginner",
+      "scope": "individual",
+      "durationDays": 1,
+      "xpReward": 40,
+      "skillRewards": [{ "skillId": "sk-core-1", "points": 10 }],
+      "steps": [
+        { "id": "m-tutorial-s1", "kind": "brief", "prompt": "Read the brief from your manager." },
+        { "id": "m-tutorial-s2", "kind": "action", "prompt": "Do the task exactly as described." },
+        { "id": "m-tutorial-s3", "kind": "review", "prompt": "Submit for AI review and read the feedback." }
+      ],
+      "deliverableLabel": "Completed first task",
+      "rubric": [
+        { "id": "rb-1", "label": "Correctness", "weight": 0.6, "description": "Did it meet the brief?" },
+        { "id": "rb-2", "label": "Clarity", "weight": 0.4, "description": "Was the work easy to follow?" }
+      ],
+      "prerequisites": []
+    },
+    {
+      "id": "m-easy",
+      "title": "Handle a Real Request",
+      "brief": "A small but real request lands in your queue. Deliver it with minimal guidance.",
+      "type": "easy",
+      "difficulty": "beginner",
+      "scope": "individual",
+      "durationDays": 1,
+      "xpReward": 70,
+      "skillRewards": [{ "skillId": "sk-core-1", "points": 15 }, { "skillId": "sk-problem", "points": 10 }],
+      "steps": [
+        { "id": "m-easy-s1", "kind": "brief", "prompt": "Understand what is being asked." },
+        { "id": "m-easy-s2", "kind": "choice", "prompt": "Choose how to approach it.", "options": [
+          { "id": "opt-a", "label": "Fast and simple" },
+          { "id": "opt-b", "label": "Thorough and robust" }
+        ] },
+        { "id": "m-easy-s3", "kind": "action", "prompt": "Execute your approach." },
+        { "id": "m-easy-s4", "kind": "review", "prompt": "Submit for review." }
+      ],
+      "deliverableLabel": "Shipped request",
+      "rubric": [
+        { "id": "rb-1", "label": "Outcome", "weight": 0.7, "description": "Did it solve the request?" },
+        { "id": "rb-2", "label": "Judgement", "weight": 0.3, "description": "Was the approach appropriate?" }
+      ],
+      "prerequisites": ["m-tutorial"]
+    },
+    {
+      "id": "m-project",
+      "title": "Team Project",
+      "brief": "A multi-day project delivered with the team. Coordinate, contribute, and integrate.",
+      "type": "company_project",
+      "difficulty": "intermediate",
+      "scope": "team",
+      "durationDays": 3,
+      "xpReward": 160,
+      "skillRewards": [{ "skillId": "sk-core-1", "points": 25 }, { "skillId": "sk-comm", "points": 20 }],
+      "steps": [
+        { "id": "m-project-s1", "kind": "brief", "prompt": "Review the project brief and your slice of it." },
+        { "id": "m-project-s2", "kind": "action", "prompt": "Deliver your part and integrate with the team." },
+        { "id": "m-project-s3", "kind": "review", "prompt": "Team review and retrospective." }
+      ],
+      "deliverableLabel": "Delivered project",
+      "rubric": [
+        { "id": "rb-1", "label": "Contribution", "weight": 0.5, "description": "Quality of your part." },
+        { "id": "rb-2", "label": "Collaboration", "weight": 0.5, "description": "How well you worked with the team." }
+      ],
+      "prerequisites": ["m-easy"]
+    },
+    {
+      "id": "m-emergency",
+      "title": "Production Incident",
+      "brief": "Something broke in production. Diagnose, fix, and communicate under pressure.",
+      "type": "emergency",
+      "difficulty": "advanced",
+      "scope": "team",
+      "durationDays": 1,
+      "xpReward": 220,
+      "skillRewards": [{ "skillId": "sk-problem", "points": 30 }, { "skillId": "sk-comm", "points": 15 }],
+      "steps": [
+        { "id": "m-emergency-s1", "kind": "brief", "prompt": "Assess the incident and its impact." },
+        { "id": "m-emergency-s2", "kind": "action", "prompt": "Apply a fix and verify it." },
+        { "id": "m-emergency-s3", "kind": "review", "prompt": "Write the incident summary." }
+      ],
+      "deliverableLabel": "Resolved incident",
+      "rubric": [
+        { "id": "rb-1", "label": "Resolution", "weight": 0.6, "description": "Was the issue fixed correctly?" },
+        { "id": "rb-2", "label": "Communication", "weight": 0.4, "description": "Was the team kept informed?" }
+      ],
+      "prerequisites": ["m-project"]
+    }
+  ],
+
+  "personas": [
+    { "id": "p-manager", "role": "manager", "name": "Your Manager", "title": "Team Manager", "glyph": "◉", "tone": "direct, supportive, outcome-focused" },
+    { "id": "p-mentor", "role": "mentor", "name": "Your Mentor", "title": "Senior Colleague", "glyph": "◈", "tone": "patient, encouraging, detail-oriented" },
+    { "id": "p-hr", "role": "hr", "name": "People Team", "title": "HR Partner", "glyph": "✦", "tone": "warm, clear, professional" },
+    { "id": "p-teammate", "role": "teammate", "name": "Your Teammate", "title": "Peer", "glyph": "▣", "tone": "friendly, collaborative" }
+  ],
+
+  "dialogues": [
+    { "id": "d-welcome", "personaId": "p-hr", "channel": "email", "text": "Welcome aboard! We're glad to have you. Your manager will get you started on day one." },
+    { "id": "d-firsttask", "personaId": "p-manager", "channel": "slack", "text": "Hey — I've dropped your first task in the board. Ping me if anything's unclear." }
+  ],
+
+  "skills": [
+    { "id": "sk-core-1", "name": "Core Craft Skill", "category": "technical", "description": "The primary technical ability of the role." },
+    { "id": "sk-comm", "name": "Communication", "category": "communication" },
+    { "id": "sk-problem", "name": "Problem Solving", "category": "problem_solving" },
+    { "id": "sk-time", "name": "Time Management", "category": "time_management" },
+    { "id": "sk-docs", "name": "Documentation", "category": "documentation" },
+    { "id": "sk-decision", "name": "Decision Making", "category": "decision_making" }
+  ],
+
+  "ladder": [
+    { "id": "lvl-intern", "rank": "intern", "order": 0, "title": "Intern", "xpRequired": 0, "responsibilities": ["Learn the tools", "Complete guided tasks"], "unlocks": ["m-tutorial"] },
+    { "id": "lvl-junior", "rank": "junior", "order": 1, "title": "Junior", "xpRequired": 100, "responsibilities": ["Handle small real tasks"], "unlocks": ["m-easy"] },
+    { "id": "lvl-associate", "rank": "associate", "order": 2, "title": "Associate", "xpRequired": 250, "responsibilities": ["Own small features"], "unlocks": ["m-project"] },
+    { "id": "lvl-mid", "rank": "mid", "order": 3, "title": "Mid-Level", "xpRequired": 500, "responsibilities": ["Deliver independently"], "unlocks": ["m-emergency"] },
+    { "id": "lvl-senior", "rank": "senior", "order": 4, "title": "Senior", "xpRequired": 900, "responsibilities": ["Lead projects", "Review others' work"], "unlocks": [] },
+    { "id": "lvl-lead", "rank": "lead", "order": 5, "title": "Lead", "xpRequired": 1500, "responsibilities": ["Set technical direction"], "unlocks": [] },
+    { "id": "lvl-manager", "rank": "manager", "order": 6, "title": "Manager", "xpRequired": 2400, "responsibilities": ["Grow the team", "Own delivery"], "unlocks": [] },
+    { "id": "lvl-director", "rank": "director", "order": 7, "title": "Director", "xpRequired": 3600, "responsibilities": ["Own the department"], "unlocks": [] },
+    { "id": "lvl-expert", "rank": "expert", "order": 8, "title": "Career Expert", "xpRequired": 5200, "responsibilities": ["Shape strategy at the highest level"], "unlocks": [] }
+  ],
+
+  "badges": [
+    { "id": "b-firststep", "name": "First Step", "description": "Completed your first mission.", "glyph": "✓", "criteria": "complete_missions:1" },
+    { "id": "b-shipper", "name": "Shipper", "description": "Completed five missions.", "glyph": "▲", "criteria": "complete_missions:5" },
+    { "id": "b-senior", "name": "Made Senior", "description": "Reached the Senior level.", "glyph": "★", "criteria": "reach_rank:senior" }
+  ],
+
+  "certificates": [
+    { "id": "cert-completion", "title": "CareerVerse Career Certificate", "description": "Awarded on completing the full career simulation." }
+  ],
+
+  "completion": {
+    "summaryHeadline": "You experienced this career from beginner to expert.",
+    "improvementAreas": [],
+    "certificateId": "cert-completion",
+    "nextCareerSuggestions": []
+  }
+}

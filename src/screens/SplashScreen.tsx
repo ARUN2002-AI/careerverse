@@ -58,7 +58,7 @@ export function SplashScreen({ navigation }: Props) {
 
       <Text
         variant="xs"
-        color="tertiary"
+        color="caption"
         align="center"
         style={{ paddingBottom: theme.spacing[6] }}
       >

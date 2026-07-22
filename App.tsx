@@ -16,6 +16,7 @@ import { Inter_700Bold } from '@expo-google-fonts/inter/700Bold';
 import { JetBrainsMono_500Medium } from '@expo-google-fonts/jetbrains-mono/500Medium';
 
 import { ThemeProvider } from './src/theme/ThemeProvider';
+import { SimulationProvider } from './src/simulation';
 import { RootNavigator } from './src/navigation/RootNavigator';
 
 import './global.css';
@@ -47,9 +48,11 @@ export default function App() {
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
         <ThemeProvider>
-          <View style={{ flex: 1 }} onLayout={onReady}>
-            <RootNavigator />
-          </View>
+          <SimulationProvider>
+            <View style={{ flex: 1 }} onLayout={onReady}>
+              <RootNavigator />
+            </View>
+          </SimulationProvider>
         </ThemeProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>

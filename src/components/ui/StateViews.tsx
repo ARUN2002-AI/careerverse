@@ -54,7 +54,7 @@ function StateFrame({
           borderRadius: theme.radius.full,
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: theme.colors.surface2,
+          backgroundColor: theme.colors.card,
         }}
       >
         <Text variant="h2" style={{ color: glyphColor }}>
@@ -88,7 +88,7 @@ function StateFrame({
 /** An empty screen is an invitation to act — always give it an action. */
 export function EmptyState(props: BaseStateProps) {
   const theme = useTheme();
-  return <StateFrame {...props} glyph="○" glyphColor={theme.colors.textTertiary} />;
+  return <StateFrame {...props} glyph="○" glyphColor={theme.colors.textCaption} />;
 }
 
 /** Errors say what happened and how to fix it. They never apologise. */
@@ -123,7 +123,7 @@ export function LoadingState({ label = 'Loading' }: { label?: string }) {
       accessibilityLabel={label}
     >
       <ActivityIndicator color={theme.colors.brand} />
-      <Text variant="sm" color="tertiary">
+      <Text variant="sm" color="caption">
         {label}
       </Text>
     </View>
@@ -160,7 +160,7 @@ export function Skeleton({ width = '100%', height = 16, radius, style }: Skeleto
           width,
           height,
           borderRadius: radius ?? theme.radius.sm,
-          backgroundColor: theme.colors.surface2,
+          backgroundColor: theme.colors.card,
         },
         animated,
         style,

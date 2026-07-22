@@ -15,97 +15,61 @@ const p = tokens.palette;
 
 // ---------------------------------------------------------------------------
 // Semantic colour — what components actually consume.
+//
+// The app is dark-only. Bible Part 21 defines a single background set and names it
+// "Background", not "Background (Dark)", so there is no light theme to switch to.
 // ---------------------------------------------------------------------------
 
-export const darkColors = {
-  bg: p.ink,
-  surface1: p.navy1,
-  surface2: p.navy2,
-  surface3: p.navy3,
-  border: p.navyBorder,
+export const colors = {
+  bg: p.bg,
+  surface: p.surface,
+  card: p.card,
+  divider: p.divider,
 
+  /**
+   * Translucency effects, not hues — they tint whatever sits beneath them and
+   * introduce no colour of their own, so Part 21's palette rule still holds.
+   */
   glass: 'rgba(255,255,255,0.06)',
   glassBorder: 'rgba(255,255,255,0.12)',
   /** Top edge highlight. Light always comes from above — never invert this. */
   lightEdge: 'rgba(255,255,255,0.10)',
-  scrim: 'rgba(4,7,13,0.72)',
+  scrim: 'rgba(11,16,32,0.72)',
 
-  brand: p.brass500,
-  brandHover: p.brass400,
-  brandPressed: p.brass600,
-  brandMuted: p.brassMuted,
+  brand: p.primary500,
+  /**
+   * Primary at low alpha, for selected-chip fills. Derived from Primary 500 rather
+   * than a new hue. Replace with the documented tint once the 50–900 ramp lands.
+   */
+  brandSoft: 'rgba(108,92,231,0.16)',
   /** Text/icon colour that sits ON brand. */
-  onBrand: p.ink,
+  onBrand: p.textPrimary,
 
-  accent: p.cyan500,
-  accentMuted: p.cyanMuted,
+  accent: p.secondary,
 
-  textPrimary: p.textDark,
-  textSecondary: p.textDarkMuted,
-  textTertiary: p.textDarkFaint,
-  textInverse: p.ink,
+  textPrimary: p.textPrimary,
+  textSecondary: p.textSecondary,
+  textCaption: p.textCaption,
+  textDisabled: p.textDisabled,
 
   success: p.success,
   warning: p.warning,
-  danger: p.danger,
-  info: p.cyan500,
+  danger: p.error,
+  info: p.secondary,
 } as const;
 
-/** Semantic colour contract. Both themes must supply every key. */
-export type Colors = Record<keyof typeof darkColors, string>;
-
-export const lightColors: Colors = {
-  bg: p.paper,
-  surface1: p.white,
-  surface2: p.paper2,
-  surface3: p.paper3,
-  border: p.paperBorder,
-
-  glass: 'rgba(12,18,32,0.04)',
-  glassBorder: 'rgba(12,18,32,0.10)',
-  lightEdge: 'rgba(255,255,255,0.80)',
-  scrim: 'rgba(12,18,32,0.40)',
-
-  // Brass is darkened in light mode to hold 4.5:1 against white.
-  brand: p.brassDark,
-  brandHover: p.brass600,
-  brandPressed: p.brassDarker,
-  brandMuted: p.brassMutedLight,
-  onBrand: p.white,
-
-  accent: p.cyanDark,
-  accentMuted: p.cyanMutedLight,
-
-  textPrimary: p.textLight,
-  textSecondary: p.textLightMuted,
-  textTertiary: p.textLightFaint,
-  textInverse: p.white,
-
-  success: p.successDark,
-  warning: p.warningDark,
-  danger: p.dangerDark,
-  info: p.cyanDark,
-};
+export type Colors = typeof colors;
 
 // ---------------------------------------------------------------------------
-// Gradients — three only. See DESIGN_SYSTEM.md §3.
+// Gradients — one only, until the official gradient library is supplied.
+// Bible Part 21: hero banners, premium cards, career highlights, dashboard header.
 // ---------------------------------------------------------------------------
 
 export const gradients = {
-  brass: {
-    colors: [p.brass400, p.brass600] as [string, string],
+  primary: {
+    colors: [p.gradientStart, p.gradientEnd] as [string, string],
     start: { x: 0, y: 0 },
     end: { x: 1, y: 1 },
-  },
-  glow: {
-    colors: ['rgba(79,209,224,0.18)', 'rgba(79,209,224,0)'] as [string, string],
-    start: { x: 0.5, y: 0 },
-    end: { x: 0.5, y: 1 },
-  },
-  depth: {
-    colors: [p.navy1, p.ink] as [string, string],
-    start: { x: 0.5, y: 0 },
-    end: { x: 0.5, y: 1 },
   },
 } as const;
 
@@ -184,29 +148,29 @@ export type TypographyVariant = keyof typeof typography;
 export const elevation = {
   e0: {},
   e1: {
-    shadowColor: '#000',
+    shadowColor: tokens.effects.shadow,
     shadowOpacity: 0.24,
     shadowRadius: 8,
     shadowOffset: { width: 0, height: 2 },
     elevation: 2,
   },
   e2: {
-    shadowColor: '#000',
+    shadowColor: tokens.effects.shadow,
     shadowOpacity: 0.32,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 6 },
     elevation: 6,
   },
   e3: {
-    shadowColor: '#000',
+    shadowColor: tokens.effects.shadow,
     shadowOpacity: 0.44,
     shadowRadius: 32,
     shadowOffset: { width: 0, height: 12 },
     elevation: 12,
   },
   /** Reserved for the primary button only. */
-  brass: {
-    shadowColor: p.brass500,
+  brand: {
+    shadowColor: p.primary500,
     shadowOpacity: 0.32,
     shadowRadius: 16,
     shadowOffset: { width: 0, height: 4 },

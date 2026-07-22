@@ -88,7 +88,7 @@ export function OnboardingScreen({ navigation }: Props) {
                 justifyContent: 'center',
               }}
             >
-              <Text variant="label" color="tertiary">
+              <Text variant="label" color="caption">
                 {item.eyebrow}
               </Text>
               <Text variant="display" style={{ marginTop: theme.spacing[2] }}>
@@ -99,7 +99,7 @@ export function OnboardingScreen({ navigation }: Props) {
               </Text>
 
               <Card variant="glass" style={{ marginTop: theme.spacing[8] }}>
-                <Text variant="label" color="tertiary">
+                <Text variant="label" color="caption">
                   {item.artefact.label}
                 </Text>
                 <Text variant="mono" color="brand" style={{ marginTop: theme.spacing[2] }}>
@@ -124,7 +124,7 @@ export function OnboardingScreen({ navigation }: Props) {
                   height: 3,
                   width: i === index ? 28 : 12,
                   borderRadius: theme.radius.full,
-                  backgroundColor: i === index ? theme.colors.brand : theme.colors.surface3,
+                  backgroundColor: i === index ? theme.colors.brand : theme.colors.divider,
                 }}
               />
             ))}

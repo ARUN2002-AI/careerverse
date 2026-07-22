@@ -114,7 +114,7 @@ export function OtpScreen({ navigation, route }: Props) {
     <Screen scroll gradient>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={{ marginTop: theme.spacing[10] }}>
-          <Text variant="label" color="tertiary">
+          <Text variant="label" color="caption">
             Security check
           </Text>
           <Text variant="display" style={{ marginTop: theme.spacing[2] }}>
@@ -161,9 +161,9 @@ export function OtpScreen({ navigation, route }: Props) {
                   minHeight: theme.layout.minTouchTarget + theme.spacing[3],
                   paddingVertical: theme.spacing[2],
                   borderRadius: theme.radius.md,
-                  backgroundColor: theme.colors.surface2,
+                  backgroundColor: theme.colors.card,
                   borderWidth: digit ? 1.5 : StyleSheet.hairlineWidth,
-                  borderColor: digit ? theme.colors.brand : theme.colors.border,
+                  borderColor: digit ? theme.colors.brand : theme.colors.divider,
                 },
               ]}
             />
@@ -182,7 +182,7 @@ export function OtpScreen({ navigation, route }: Props) {
             No code yet?
           </Text>
           {secondsLeft > 0 ? (
-            <Text variant="mono" color="tertiary" accessibilityLiveRegion="polite">
+            <Text variant="mono" color="caption" accessibilityLiveRegion="polite">
               {`Resend in ${secondsLeft}s`}
             </Text>
           ) : (

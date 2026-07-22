@@ -37,8 +37,8 @@ export interface ButtonProps extends Omit<PressableProps, 'style' | 'children'> 
 const HEIGHTS: Record<ButtonSize, number> = { sm: 40, md: 48, lg: 56 };
 
 /**
- * Primary is the brass gradient and is the only element on a screen allowed to carry
- * `elevation.brass`. There is one primary action per screen (Bible Part 10).
+ * Primary is the Primary Gradient and is the only element on a screen allowed to carry
+ * `elevation.brand`. There is one primary action per screen (Bible Part 10).
  */
 export function Button({
   label,
@@ -134,10 +134,10 @@ export function Button({
     >
       {variant === 'primary' ? (
         <LinearGradient
-          colors={[...theme.gradients.brass.colors]}
-          start={theme.gradients.brass.start}
-          end={theme.gradients.brass.end}
-          style={[container, !isInert && theme.elevation.brass]}
+          colors={[...theme.gradients.primary.colors]}
+          start={theme.gradients.primary.start}
+          end={theme.gradients.primary.end}
+          style={[container, !isInert && theme.elevation.brand]}
         >
           {content}
         </LinearGradient>
@@ -146,9 +146,9 @@ export function Button({
           style={[
             container,
             variant === 'secondary' && {
-              backgroundColor: theme.colors.surface2,
+              backgroundColor: theme.colors.card,
               borderWidth: StyleSheet.hairlineWidth,
-              borderColor: theme.colors.border,
+              borderColor: theme.colors.divider,
             },
             variant === 'danger' && {
               backgroundColor: 'transparent',

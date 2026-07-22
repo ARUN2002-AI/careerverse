@@ -40,7 +40,7 @@ export function Card({
           overflow: 'hidden',
         },
         variant === 'solid' && {
-          backgroundColor: theme.colors.surface1,
+          backgroundColor: theme.colors.surface,
         },
         variant === 'glass' && {
           backgroundColor: theme.colors.glass,
@@ -52,7 +52,7 @@ export function Card({
         variant === 'outline' && {
           backgroundColor: 'transparent',
           borderWidth: StyleSheet.hairlineWidth,
-          borderColor: theme.colors.border,
+          borderColor: theme.colors.divider,
         },
         variant !== 'outline' && theme.elevation[elevation],
         style,

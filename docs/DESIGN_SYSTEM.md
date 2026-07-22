@@ -2,14 +2,21 @@
 
 > **Provenance.** The supplied *Frontend UI Experience Bible v1.0* (`CareerVerse.pdf`) is a
 > table of contents: it names §21 Color Palette, §22 Typography, §26 Border Radius, §32 Design
-> Tokens and so on, but specifies no values for any of them. This document supplies those
-> missing values. It was authored to unblock implementation and is **subject to your review** —
-> every value is a proposal, not a fact.
+> Tokens and so on, but originally specified no values for any of them. This document supplied
+> those missing values as proposals, to unblock implementation.
+>
+> **§21 Color Palette has since been specified.** Every colour in §2 and §3 below is now
+> transcribed from it, not proposed — the earlier brass/cyan palette has been fully replaced.
+> Typography, radius, spacing, and motion remain **proposals awaiting their sections**.
+>
+> **Open question.** The Bible's contents name *Part 12 — Dark + Light theme*, but §21 defines
+> only one background set. The app is currently built dark-only on that basis. If Part 12
+> mandates a light theme, a light palette must be added to §21 before it can be rebuilt.
 >
 > What *was* directional in the Bible has been honoured: §15 Glassmorphism, §16 Gradients,
-> §17 Lighting, Part 12 Dark + Light theme, Part 13 responsive widths from 320px.
+> §17 Lighting, Part 13 responsive widths from 320px.
 >
-> When real values arrive, replace `src/theme/tokens.ts` and the whole app follows. No colour,
+> When further values arrive, edit `design-tokens.json` and the whole app follows. No colour,
 > font, or spacing value is written anywhere else in the codebase.
 
 ---
@@ -19,17 +26,17 @@
 CareerVerse puts a student inside a company before they ever have a job. The app should feel
 like the building, not like a course.
 
-The direction is a **city office late at night**: deep blue-black glazing, warm brass light
-from a desk lamp, cool glow off a monitor. This is where the Bible's three visual rules stop
+The direction is a **city office late at night**: deep blue-black glazing, violet light from
+the screens, cool cyan glow off a monitor. This is where the Bible's three visual rules stop
 being decoration and become physics — glass is the office glazing, gradients are light falling
-off a surface, lighting is the lamp. Every surface in the app is either glass, lit brass, or
+off a surface, lighting is the lamp. Every surface in the app is either glass, lit violet, or
 screen glow.
 
-**The deliberate risk:** the primary brand colour is **brass**, not the indigo-violet that
-almost every AI product reaches for. Brass reads as nameplate, lift button, award — corporate
-and earned. It is the single loudest thing in the palette; everything else stays quiet.
+The primary brand colour is **violet `#6C5CE7`**, fixed by Bible Part 21. It reads as
+premium and AI-native, and it is the single loudest thing in the palette; everything else
+stays quiet.
 
-**Signature element — the Employee Badge.** A glass card with a lit brass edge carrying the
+**Signature element — the Employee Badge.** A glass card with a lit violet edge carrying the
 user's role, company, tenure ring, and a monospaced employee ID. It is the hero on Home, the
 header of Profile, and the face of the Certificate. One object, carrying the whole premise.
 
@@ -37,89 +44,93 @@ header of Profile, and the face of the Certificate. One object, carrying the who
 
 ## 2. Colour
 
-Dark is the primary theme. Light is a supported alternative, not the default.
+**Every value in this section is transcribed from UI Experience Bible Part 21.** That document
+is authoritative; this one only records how its values map onto semantic tokens. No hue may be
+added here that does not appear there.
+
+The app is **dark-only**. Part 21 defines one background set and names it "Background", not
+"Background (Dark)", so there is no light theme.
 
 ### Brand
 
 | Token | Hex | Use |
 |---|---|---|
-| `brand.500` | `#D9A441` | Primary actions, active states, the badge edge |
-| `brand.400` | `#E8BC6B` | Hover / pressed lift |
-| `brand.600` | `#B8862F` | Pressed depth, gradient end |
-| `brand.muted` | `#3A2F1A` | Brass at 12% over ink — quiet fills |
+| `brand` | `#6C5CE7` | Primary actions, active tabs, CTAs, progress, selected cards |
+| `brandSoft` | `rgba(108,92,231,0.16)` | Selected-chip fill — Primary at low alpha, not a new hue |
+| `onBrand` | `#FFFFFF` | Text and icons sitting on brand or the Primary Gradient |
+
+> **Open item.** Part 21 names the primary "Primary 500", which implies a 50–900 ramp that has
+> not been supplied. Until it is, there are **no hover or pressed brand tints** — press feedback
+> is a scale transform plus `opacity.pressed`, which is how `Button` already worked.
 
 ### Accent — monitor glow
 
 | Token | Hex | Use |
 |---|---|---|
-| `accent.500` | `#4FD1E0` | AI voice, links, focus rings, data viz |
-| `accent.muted` | `#16323A` | Accent fills |
+| `accent` | `#00C2FF` | AI assistant, analytics, information badges |
 
-`accent` is reserved for **the AI manager and anything the system says**. Brass is the user's
-own agency. Keeping these separate is a rule, not a preference.
+`accent` is reserved for **the AI manager and anything the system says**. Brand violet is the
+user's own agency. Keeping these separate is a rule, not a preference.
 
-### Surfaces (dark)
+### Surfaces
 
 | Token | Hex | Use |
 |---|---|---|
-| `bg` | `#080C16` | App background |
-| `surface.1` | `#0E1424` | Cards, sheets |
-| `surface.2` | `#161E32` | Raised cards, inputs |
-| `surface.3` | `#202A44` | Pressed, dividers-on-raised |
-| `border` | `#243049` | Hairlines |
+| `bg` | `#0B1020` | App background |
+| `surface` | `#151C2F` | Cards, sheets, tab bar |
+| `card` | `#1F2937` | Raised cards, inputs, pills |
+| `divider` | `#2B3447` | Hairlines, rules, inactive indicators |
 | `glass` | `rgba(255,255,255,0.06)` | Glass fill |
 | `glassBorder` | `rgba(255,255,255,0.12)` | Glass top edge |
 
-### Text (dark)
+> `glass`, `glassBorder`, `lightEdge`, and `scrim` are translucency effects, not hues. They tint
+> whatever sits beneath them and introduce no colour of their own, so Part 21's palette rule holds.
 
-| Token | Hex | Contrast on `bg` |
-|---|---|---|
-| `text.primary` | `#F2F5FA` | 17.88:1 |
-| `text.secondary` | `#A7B3C7` | 9.23:1 |
-| `text.tertiary` | `#79879D` | 5.37:1 (4.55:1 on `surface.2`) |
-| `text.inverse` | `#080C16` | 8.69:1 on brass |
+### Text
 
-> `text.tertiary` was originally `#6B7A92`. Measurement put it at 4.49:1 on `bg` and
-> 3.81:1 on `surface.2` — both below AA. It was lightened to the value above.
+Contrast measured against `bg` `#0B1020`.
+
+| Token | Hex | Contrast on `bg` | Verdict |
+|---|---|---|---|
+| `textPrimary` | `#FFFFFF` | 18.93:1 | AAA |
+| `textSecondary` | `#B6C2D9` | 10.56:1 | AAA |
+| `textCaption` | `#94A3B8` | 7.38:1 | AAA |
+| `textDisabled` | `#6B7280` | 3.92:1 | Below AA — disabled only |
+
+> `textDisabled` sits under the 4.5:1 body-text floor. WCAG 1.4.3 exempts inactive controls, so
+> this is compliant **only** while the token stays on disabled elements. Never use it for
+> live body copy.
 
 ### Semantic
 
 | Token | Hex |
 |---|---|
-| `success` | `#3DD68C` |
-| `warning` | `#FF8A3D` |
-| `danger` | `#FF5C6C` |
-| `info` | `#4FD1E0` |
+| `success` | `#22C55E` |
+| `warning` | `#F59E0B` |
+| `danger` | `#EF4444` |
+| `info` | `#00C2FF` |
 
-> **Collision rule.** `warning` is orange, `brand` is brass — close in hue. Semantic colours may
-> only appear on status pills, never on buttons or large fills. Brass is never a status.
-
-### Light theme
-
-| Token | Hex |
-|---|---|
-| `bg` | `#F7F8FB` |
-| `surface.1` | `#FFFFFF` |
-| `surface.2` | `#F0F2F7` |
-| `border` | `#DFE4ED` |
-| `text.primary` | `#0C1220` |
-| `text.secondary` | `#4A566B` |
-| `brand.500` | `#9A6E1C` (darkened for 4.6:1 on white) |
+> **Collision rule.** Semantic colours may only appear on status pills, never on buttons or large
+> fills. Brand violet is never a status.
 
 ---
 
-## 3. Gradients & lighting (Bible §16, §17)
+## 3. Gradients & lighting (Bible Part 21)
 
-Three gradients only. More than three reads as decoration.
+**One gradient**, until the official gradient library is supplied. More reads as decoration.
 
 | Name | Definition | Use |
 |---|---|---|
-| `brass` | `#E8BC6B → #B8862F`, 135° | Primary buttons, badge edge |
-| `glow` | `#4FD1E0 @18% → transparent`, radial | Behind AI avatar, active ring |
-| `depth` | `#0E1424 → #080C16`, 180° | Screen backgrounds, sheet tops |
+| `primary` | `#7C3AED → #5B21B6`, 135° | Hero banners, premium cards, career highlights, dashboard header, primary buttons |
+
+> The `glow` and `depth` gradients were removed — neither appears in Part 21. `Screen gradient`
+> now paints the Primary Gradient as a header wash; everything else falls back to flat `bg`.
 
 **Lighting rule.** Light comes from the top. Raised surfaces get a 1px `rgba(255,255,255,0.10)`
 top border and a downward shadow. Never light from below.
+
+**Contrast on the gradient.** `#FFFFFF` measures 5.70:1 on the gradient start `#7C3AED` and
+rises toward the end stop, so button labels clear AA across the whole sweep.
 
 ---
 
@@ -187,7 +198,7 @@ Body text never goes below 14. `xs` is for labels and metadata only.
 | `e1` | `y2 blur8 rgba(0,0,0,0.24)` | Cards |
 | `e2` | `y6 blur18 rgba(0,0,0,0.32)` | Raised, FAB |
 | `e3` | `y12 blur32 rgba(0,0,0,0.44)` | Sheets, modals |
-| `brass` | `y4 blur16 rgba(217,164,65,0.32)` | Primary button only |
+| `brand` | `y4 blur16 rgba(108,92,231,0.32)` | Primary button only |
 
 Android maps to `elevation: 2 / 6 / 12`.
 
@@ -212,9 +223,14 @@ transforms collapse to opacity-only.
 
 ## 8. Accessibility floor (Bible Part 11)
 
-- Body text ≥ 4.5:1. **All 17 foreground/background pairs are machine-verified** — see
-  `npm run check:contrast`. Three tokens were corrected after the first run failed
-  (`text.tertiary` in both themes, and the light-mode `accent`).
+- Body text ≥ 4.5:1, non-text ≥ 3:1. **All 20 gated pairs are machine-verified** — see
+  `npm run check:contrast`, which reads `design-tokens.json` directly and fails the build
+  on any regression.
+- **`brand` is not a body-text colour.** Primary 500 measures 3.90:1 on `bg` and 3.02:1 on
+  `card` — valid for active-tab tints, icons, and indicators, never for running text. The
+  documented 50–900 ramp will supply a lighter tint for text use.
+- **One unresolved conflict:** `error` on `card` is 3.90:1, below AA. It prints as WARN on
+  every contrast run and needs a Part 21 decision, not a code change.
 - Touch targets ≥ 44×44pt
 - Focus ring: 2px `accent.500` at 60% with a 2px offset
 - Every icon-only control carries `accessibilityLabel` and `accessibilityRole`
@@ -232,8 +248,8 @@ transforms collapse to opacity-only.
 
 ## 10. Rules for extending this system
 
-1. No colour, font size, or spacing value is written outside `src/theme/tokens.ts`.
-2. New surfaces compose existing tokens. Never a new hex.
+1. No colour, font size, or spacing value is written outside `design-tokens.json`.
+2. New surfaces compose existing tokens. Never a new hex — Part 21 is the only source of hues.
 3. New components ship with all five states: default, loading, empty, error, success.
-4. Brass means the user acts. Cyan means the system speaks. Never mix them.
+4. Violet means the user acts. Cyan means the system speaks. Never mix them.
 5. Spend boldness once per screen. If two things compete for attention, one is wrong.

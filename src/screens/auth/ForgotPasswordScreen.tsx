@@ -40,7 +40,7 @@ export function ForgotPasswordScreen({ navigation }: Props) {
     <Screen scroll gradient>
       <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <View style={{ marginTop: theme.spacing[10] }}>
-          <Text variant="label" color="tertiary">
+          <Text variant="label" color="caption">
             Access recovery
           </Text>
           <Text variant="display" style={{ marginTop: theme.spacing[2] }}>

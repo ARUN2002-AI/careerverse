@@ -54,12 +54,12 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
     ? theme.colors.danger
     : focused
       ? theme.colors.brand
-      : theme.colors.border;
+      : theme.colors.divider;
 
   return (
     <View style={containerStyle}>
       {label && (
-        <Text variant="label" color="tertiary" style={{ marginBottom: theme.spacing[2] }}>
+        <Text variant="label" color="caption" style={{ marginBottom: theme.spacing[2] }}>
           {label}
         </Text>
       )}
@@ -72,7 +72,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
           minHeight: theme.layout.minTouchTarget + 4,
           paddingHorizontal: theme.spacing[4],
           borderRadius: theme.radius.md,
-          backgroundColor: theme.colors.surface2,
+          backgroundColor: theme.colors.card,
           borderWidth: focused || hasError ? 1.5 : StyleSheet.hairlineWidth,
           borderColor,
           opacity: editable ? 1 : theme.opacity.disabled,
@@ -93,7 +93,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
             setFocused(false);
             rest.onBlur?.(e);
           }}
-          placeholderTextColor={theme.colors.textTertiary}
+          placeholderTextColor={theme.colors.textCaption}
           selectionColor={theme.colors.brand}
           maxFontSizeMultiplier={1.6}
           accessibilityLabel={rest.accessibilityLabel ?? label}
@@ -123,7 +123,7 @@ export const Input = forwardRef<TextInput, InputProps>(function Input(
       {(error || hint) && (
         <Text
           variant="xs"
-          color={hasError ? 'danger' : 'tertiary'}
+          color={hasError ? 'danger' : 'caption'}
           style={{ marginTop: theme.spacing[2] }}
           accessibilityLiveRegion={hasError ? 'polite' : 'none'}
         >

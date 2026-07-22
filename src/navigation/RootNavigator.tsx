@@ -1,24 +1,23 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import { useTheme } from '../theme/ThemeProvider';
 import { Text } from '../components';
 import { SplashScreen } from '../screens/SplashScreen';
+import { JoiningScreen } from '../screens/joining/JoiningScreen';
 import { OnboardingScreen } from '../screens/auth/OnboardingScreen';
 import { LoginScreen } from '../screens/auth/LoginScreen';
 import { RegisterScreen } from '../screens/auth/RegisterScreen';
 import { ForgotPasswordScreen } from '../screens/auth/ForgotPasswordScreen';
 import { OtpScreen } from '../screens/auth/OtpScreen';
-import {
-  HomeScreen,
-  CareersScreen,
-  SimulationsScreen,
-  InboxScreen,
-  ProfileScreen,
-} from '../screens/PlaceholderScreen';
+import { ProfileScreen } from '../screens/PlaceholderScreen';
+import { HomeScreen } from '../screens/home/HomeScreen';
+import { CareersNavigator } from './CareersNavigator';
+import { SimulationsNavigator } from './SimulationsNavigator';
+import { InboxNavigator } from './InboxNavigator';
 import type { AuthStackParamList, MainTabParamList, RootStackParamList } from './types';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -59,10 +58,10 @@ function MainTabs() {
       screenOptions={({ route }) => ({
         headerShown: false,
         tabBarActiveTintColor: theme.colors.brand,
-        tabBarInactiveTintColor: theme.colors.textTertiary,
+        tabBarInactiveTintColor: theme.colors.textCaption,
         tabBarStyle: {
-          backgroundColor: theme.colors.surface1,
-          borderTopColor: theme.colors.border,
+          backgroundColor: theme.colors.surface,
+          borderTopColor: theme.colors.divider,
           borderTopWidth: StyleSheet.hairlineWidth,
           height: 64,
           paddingTop: theme.spacing[2],
@@ -82,9 +81,9 @@ function MainTabs() {
       })}
     >
       <Tabs.Screen name="Home" component={HomeScreen} />
-      <Tabs.Screen name="Careers" component={CareersScreen} />
-      <Tabs.Screen name="Simulations" component={SimulationsScreen} />
-      <Tabs.Screen name="Inbox" component={InboxScreen} />
+      <Tabs.Screen name="Careers" component={CareersNavigator} />
+      <Tabs.Screen name="Simulations" component={SimulationsNavigator} />
+      <Tabs.Screen name="Inbox" component={InboxNavigator} />
       <Tabs.Screen name="Profile" component={ProfileScreen} />
     </Tabs.Navigator>
   );
@@ -96,14 +95,14 @@ export function RootNavigator() {
   // Feeds the design tokens into React Navigation so screen transitions and the
   // container background match the app rather than flashing a default white.
   const navTheme = {
-    ...(theme.scheme === 'dark' ? DarkTheme : DefaultTheme),
+    ...DarkTheme,
     colors: {
-      ...(theme.scheme === 'dark' ? DarkTheme : DefaultTheme).colors,
+      ...DarkTheme.colors,
       primary: theme.colors.brand,
       background: theme.colors.bg,
-      card: theme.colors.surface1,
+      card: theme.colors.surface,
       text: theme.colors.textPrimary,
-      border: theme.colors.border,
+      border: theme.colors.divider,
       notification: theme.colors.danger,
     },
   };
@@ -113,6 +112,7 @@ export function RootNavigator() {
       <RootStack.Navigator screenOptions={{ headerShown: false }}>
         <RootStack.Screen name="Splash" component={SplashScreen} />
         <RootStack.Screen name="Auth" component={AuthNavigator} />
+        <RootStack.Screen name="Joining" component={JoiningScreen} />
         <RootStack.Screen name="Main" component={MainTabs} />
       </RootStack.Navigator>
     </NavigationContainer>

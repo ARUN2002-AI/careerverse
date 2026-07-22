@@ -1,0 +1,72 @@
+{
+  "_comment": "PHASE 2 — reusable company environments, shared by EVERY career. A career references these by id in its `supportedCompanyTypes`. Validated by companyTypeSchema. The `modifiers` make the same task feel different per environment without any career-specific code.",
+
+  "companyTypes": [
+    {
+      "id": "startup",
+      "name": "Startup",
+      "description": "A small, fast-moving company where you wear many hats and ship every day.",
+      "culture": "Informal, high ownership, move-fast-and-learn. Everyone talks to everyone.",
+      "teamSize": "3–15 people",
+      "workStyle": "Hands-on, broad scope, minimal process, direct impact on the product.",
+      "responsibilities": [
+        "Own features end to end",
+        "Jump across the stack or across roles when needed",
+        "Make decisions with incomplete information",
+        "Talk directly to users and founders"
+      ],
+      "communicationStyle": "Rapid, informal chat. Decisions happen in threads, not documents.",
+      "growthSpeed": "Very fast — responsibility grows faster than the title.",
+      "processes": [
+        "Lightweight or no formal process",
+        "Daily async check-ins",
+        "Ship to production continuously"
+      ],
+      "modifiers": { "xpMultiplier": 1.25, "formality": 1, "autonomy": 5, "paceLabel": "Ship daily" }
+    },
+    {
+      "id": "medium",
+      "name": "Medium Company",
+      "description": "An established company with defined roles, real process, and cross-team work.",
+      "culture": "Balanced. Clear ownership, collaborative, room to specialise.",
+      "teamSize": "15–80 people",
+      "workStyle": "Focused role, structured sprints, coordinated work across teams.",
+      "responsibilities": [
+        "Deliver within a defined role",
+        "Coordinate with adjacent teams",
+        "Follow the team's process and standards",
+        "Contribute to planning and reviews"
+      ],
+      "communicationStyle": "Mix of chat and scheduled meetings. Decisions are documented.",
+      "growthSpeed": "Steady — clear paths and regular review cycles.",
+      "processes": [
+        "Two-week sprints",
+        "Structured code/work review",
+        "Release cadence with QA"
+      ],
+      "modifiers": { "xpMultiplier": 1.0, "formality": 3, "autonomy": 3, "paceLabel": "Sprint by sprint" }
+    },
+    {
+      "id": "enterprise",
+      "name": "Enterprise / MNC",
+      "description": "A large multinational with layers of structure, compliance, and scale.",
+      "culture": "Formal, process-driven, specialised. Stability and quality over speed.",
+      "teamSize": "80+ people across many teams",
+      "workStyle": "Deep specialisation, formal approvals, large-scale systems, documentation-heavy.",
+      "responsibilities": [
+        "Deliver a well-defined slice of a large system",
+        "Follow compliance, security, and review gates",
+        "Coordinate across departments and time zones",
+        "Document thoroughly for auditability"
+      ],
+      "communicationStyle": "Formal. Meetings, tickets, and sign-offs. Decisions require approval.",
+      "growthSpeed": "Structured and slower — promotions follow defined criteria and cycles.",
+      "processes": [
+        "Quarterly planning",
+        "Multi-stage review and approval",
+        "Change management and staged releases"
+      ],
+      "modifiers": { "xpMultiplier": 0.9, "formality": 5, "autonomy": 2, "paceLabel": "Quarterly releases" }
+    }
+  ]
+}

@@ -9,7 +9,10 @@ export interface ScreenProps {
   children: React.ReactNode;
   /** Wraps content in a ScrollView. Off for screens that manage their own list. */
   scroll?: boolean;
-  /** Paints the `depth` gradient behind content instead of a flat background. */
+  /**
+   * Paints the Primary Gradient as a header wash behind content. Reserved for hero
+   * and dashboard-header screens (Bible Part 21).
+   */
   gradient?: boolean;
   /** Removes horizontal padding for edge-to-edge layouts. */
   bleed?: boolean;
@@ -59,16 +62,13 @@ export function Screen({
 
   return (
     <View style={[{ flex: 1, backgroundColor: theme.colors.bg, paddingTop: insets.top }, style]}>
-      <StatusBar
-        barStyle={theme.scheme === 'dark' ? 'light-content' : 'dark-content'}
-        backgroundColor="transparent"
-        translucent
-      />
+      {/* Dark-only app, so the status bar is always light-on-dark. */}
+      <StatusBar barStyle="light-content" backgroundColor="transparent" translucent />
       {gradient && (
         <LinearGradient
-          colors={[...theme.gradients.depth.colors]}
-          start={theme.gradients.depth.start}
-          end={theme.gradients.depth.end}
+          colors={[...theme.gradients.primary.colors]}
+          start={theme.gradients.primary.start}
+          end={theme.gradients.primary.end}
           style={{ position: 'absolute', left: 0, right: 0, top: 0, height: 320 }}
           pointerEvents="none"
         />

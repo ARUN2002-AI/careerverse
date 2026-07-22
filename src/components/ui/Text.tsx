@@ -4,7 +4,8 @@ import { Text as RNText, type TextProps as RNTextProps, type TextStyle } from 'r
 import { useTheme } from '../../theme/ThemeProvider';
 import type { TypographyVariant } from '../../theme/tokens';
 
-type ColorKey = 'primary' | 'secondary' | 'tertiary' | 'inverse' | 'brand' | 'accent'
+// Names mirror Bible Part 21's text roles exactly, so a spec line maps to one prop value.
+type ColorKey = 'primary' | 'secondary' | 'caption' | 'disabled' | 'brand' | 'accent'
   | 'success' | 'warning' | 'danger' | 'onBrand';
 
 export interface TextProps extends RNTextProps {
@@ -18,8 +19,8 @@ export interface TextProps extends RNTextProps {
 const COLOR_MAP: Record<ColorKey, keyof ReturnType<typeof useTheme>['colors']> = {
   primary: 'textPrimary',
   secondary: 'textSecondary',
-  tertiary: 'textTertiary',
-  inverse: 'textInverse',
+  caption: 'textCaption',
+  disabled: 'textDisabled',
   brand: 'brand',
   accent: 'accent',
   success: 'success',
