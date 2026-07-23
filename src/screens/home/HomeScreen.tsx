@@ -57,7 +57,7 @@ export function HomeScreen({ navigation }: Props) {
         navigation.navigate('Inbox', { screen: 'Workplace' });
         break;
       case 'Profile':
-        navigation.navigate('Profile');
+        navigation.navigate('Profile', { screen: 'ProfileHome' });
         break;
       case 'Home':
         navigation.navigate('Home');

@@ -51,6 +51,8 @@ export interface SimulationState {
  * transition is named and exhaustively handled — no screen mutates state directly.
  */
 export type SimulationAction =
+  /** Replaces the whole run with a persisted save-file on launch (see persistence.ts). */
+  | { type: 'HYDRATE'; state: SimulationState | null }
   | { type: 'START'; careerId: string; companyTypeId: string; now: number }
   | { type: 'COMPLETE_JOINING_STEP'; stepId: string; now: number }
   | { type: 'COMPLETE_DAILY_SEGMENT'; segmentId: string; now: number }

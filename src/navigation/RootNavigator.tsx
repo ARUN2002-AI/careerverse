@@ -13,11 +13,11 @@ import { LoginScreen } from '../screens/auth/LoginScreen';
 import { RegisterScreen } from '../screens/auth/RegisterScreen';
 import { ForgotPasswordScreen } from '../screens/auth/ForgotPasswordScreen';
 import { OtpScreen } from '../screens/auth/OtpScreen';
-import { ProfileScreen } from '../screens/PlaceholderScreen';
 import { HomeScreen } from '../screens/home/HomeScreen';
 import { CareersNavigator } from './CareersNavigator';
 import { SimulationsNavigator } from './SimulationsNavigator';
 import { InboxNavigator } from './InboxNavigator';
+import { ProfileNavigator } from './ProfileNavigator';
 import type { AuthStackParamList, MainTabParamList, RootStackParamList } from './types';
 
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -84,7 +84,7 @@ function MainTabs() {
       <Tabs.Screen name="Careers" component={CareersNavigator} />
       <Tabs.Screen name="Simulations" component={SimulationsNavigator} />
       <Tabs.Screen name="Inbox" component={InboxNavigator} />
-      <Tabs.Screen name="Profile" component={ProfileScreen} />
+      <Tabs.Screen name="Profile" component={ProfileNavigator} />
     </Tabs.Navigator>
   );
 }

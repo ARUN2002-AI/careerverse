@@ -35,12 +35,26 @@ export type SimulationsStackParamList = {
   Workday: undefined;
 };
 
+/**
+ * The Profile tab is a nested stack: the profile hub plus the growth surfaces it links to —
+ * skills, career progression, analytics, portfolio, resume, and the certificate.
+ */
+export type ProfileStackParamList = {
+  ProfileHome: undefined;
+  Skills: undefined;
+  Progression: undefined;
+  Analytics: undefined;
+  Portfolio: undefined;
+  Resume: undefined;
+  Certificate: undefined;
+};
+
 export type MainTabParamList = {
   Home: undefined;
   Careers: NavigatorScreenParams<CareersStackParamList>;
   Simulations: NavigatorScreenParams<SimulationsStackParamList>;
   Inbox: NavigatorScreenParams<InboxStackParamList>;
-  Profile: undefined;
+  Profile: NavigatorScreenParams<ProfileStackParamList>;
 };
 
 export type RootStackParamList = {

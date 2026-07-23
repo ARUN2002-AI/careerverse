@@ -237,6 +237,10 @@ export function reduce(
 ): SimulationState | null {
   if (action.type === 'RESET') return null;
 
+  // Rehydration from persistence — the save-file is already validated (persistence.ts), so it
+  // replaces state wholesale without touching career/company (which the provider re-resolves).
+  if (action.type === 'HYDRATE') return action.state;
+
   if (action.type === 'START') {
     if (!career || !companyType) return state;
     return createSimulation(career, companyType, action.now);

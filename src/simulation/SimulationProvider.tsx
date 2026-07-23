@@ -9,10 +9,20 @@
  * clock, so the engine underneath stays pure and career-agnostic.
  */
 
-import React, { createContext, useCallback, useContext, useMemo, useReducer } from 'react';
+import React, {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useState,
+} from 'react';
 
 import { getCareer, getCompanyType } from './registry';
 import { reduce } from './engine';
+import { loadSavedState, persistState } from './persistence';
 import type { SimulationState, SimulationAction } from './state';
 import type { ResolvedCareer, CompanyType } from './schema';
 
@@ -37,6 +47,8 @@ export interface SimulationContextValue {
   career: ResolvedCareer | null;
   /** Resolved company environment for the active run (null when idle). */
   companyType: CompanyType | null;
+  /** False until the persisted save-file has been loaded on launch. */
+  hydrated: boolean;
 
   /** Phase 1 + 2 → 3: begin a run for a chosen career + company. */
   start: (careerId: string, companyTypeId: string) => void;
@@ -57,12 +69,39 @@ export interface SimulationContextValue {
 const SimulationContext = createContext<SimulationContextValue | null>(null);
 
 export function SimulationProvider({ children }: { children: React.ReactNode }) {
-  // TODO: hydrate initial state from persistence (AsyncStorage/SecureStore) once the
-  // storage layer lands, and persist on every change. The engine already produces plain
-  // serialisable state, so this is a drop-in.
   const [state, dispatch] = useReducer(rootReducer, null);
+  const [hydrated, setHydrated] = useState(false);
 
   const now = () => Date.now();
+
+  // ---- Persistence lifecycle -------------------------------------------------------------
+  // On launch, load the saved run (validated in persistence.ts) and replay it into the reducer.
+  // We only mark `hydrated` afterwards so the persist effect below never writes the initial
+  // null over a real save before it has been read back.
+  useEffect(() => {
+    let alive = true;
+    void loadSavedState().then((saved) => {
+      if (!alive) return;
+      if (saved) dispatch({ type: 'HYDRATE', state: saved });
+      setHydrated(true);
+    });
+    return () => {
+      alive = false;
+    };
+  }, []);
+
+  // Persist on every change once hydrated. Writes are small and best-effort; a failure inside
+  // persistState is swallowed there and never disturbs the in-memory run.
+  const skipFirstPersist = useRef(true);
+  useEffect(() => {
+    if (!hydrated) return;
+    if (skipFirstPersist.current) {
+      // The tick that flips `hydrated` already reflects the loaded state — no need to rewrite it.
+      skipFirstPersist.current = false;
+      return;
+    }
+    void persistState(state);
+  }, [state, hydrated]);
 
   const start = useCallback((careerId: string, companyTypeId: string) => {
     dispatch({ type: 'START', careerId, companyTypeId, now: now() });
@@ -108,6 +147,7 @@ export function SimulationProvider({ children }: { children: React.ReactNode }) 
       state,
       career,
       companyType,
+      hydrated,
       start,
       completeJoiningStep,
       completeDailySegment,
@@ -121,6 +161,7 @@ export function SimulationProvider({ children }: { children: React.ReactNode }) 
       state,
       career,
       companyType,
+      hydrated,
       start,
       completeJoiningStep,
       completeDailySegment,

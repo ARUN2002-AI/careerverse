@@ -34,3 +34,23 @@ export function titleCase(value: string): string {
     .trim()
     .replace(/\b\w/g, (c) => c.toUpperCase());
 }
+
+const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+/**
+ * A stored epoch-ms timestamp -> "22 Jul 2026". We build the string from the Date's parts
+ * rather than `toLocaleDateString` so the output is identical on every device and engine.
+ * This reads a persisted value, never the live clock, so it stays deterministic per run.
+ */
+export function formatDate(ts: number): string {
+  const d = new Date(ts);
+  return `${d.getDate()} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+}
+
+/** Simulated working-day counter -> a tenure label. Five working days to a week. */
+export function tenureLabel(day: number): string {
+  if (day <= 1) return 'First day';
+  if (day < 5) return `Day ${day}`;
+  const weeks = Math.floor(day / 5);
+  return weeks === 1 ? '1 week in' : `${weeks} weeks in`;
+}

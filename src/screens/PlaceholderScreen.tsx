@@ -15,8 +15,3 @@ export function makePlaceholder(title: string, message: string) {
     );
   };
 }
-
-export const ProfileScreen = makePlaceholder(
-  'Profile',
-  'Your badge, portfolio, certificates, and settings.',
-);
